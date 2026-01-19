@@ -8,10 +8,11 @@ package com.duoc.speedfast.model;
 public class PedidoComida extends Pedido{
 
     protected String mochilaTermica;
+    protected double tiempoEntrega = 0;
 
 
-    public PedidoComida (String mochilaTermica, String direccionEntrega, String tipoPedido){
-        super(direccionEntrega, tipoPedido);
+    public PedidoComida (String mochilaTermica, String direccionEntrega, double distanciaKm, String tipoPedido){
+        super(direccionEntrega, distanciaKm, tipoPedido);
         this.mochilaTermica = mochilaTermica;
     }
 
@@ -34,5 +35,19 @@ public class PedidoComida extends Pedido{
     //sobrecarga
     public void asignarRepartidor(String nombreRepartidor){
         System.out.println("\nPrepara la mesa! " + nombreRepartidor + " lleva su comida lista para servir.");
+    }
+
+    @Override
+    public double calcularTiempoEntrega() {
+        tiempoEntrega = 15 + (2 * distanciaKm);
+        //se aproxima hacia arriba para tener mayor margen de entrega y no caer en incumplimiento
+        tiempoEntrega = (int) Math.ceil(tiempoEntrega);
+        return tiempoEntrega;
+    }
+
+    @Override
+    public void mostrarResumen() {
+        super.mostrarResumen();
+        System.out.println("Tiempo estimado de entrega: "+tiempoEntrega+" minutos.");
     }
 }

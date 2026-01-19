@@ -14,24 +14,21 @@ import com.duoc.speedfast.model.PedidoExpress;
 public class Main {
     public static void main(String[] args) {
 
-        Pedido n1 = new PedidoComida("si", "Juan de Barros 3664, Quinta Normal.", "Comida");
+        Pedido n1 = new PedidoComida("si", "Juan de Barros 3664, Quinta Normal.", 3.6, "Comida");
 
-        System.out.println("\n--- Pedido de Comida de SpeedFast ---");
-        n1.asignarRepartidor();
-        n1.asignarRepartidor("Javier Flores");
+        Pedido n2 = new PedidoEncomienda(120, "Fresia Oliva 780, Lo Prado.", 5.9, "Encomienda");
 
-        Pedido n2 = new PedidoEncomienda(550,"Emilio Vaisse 770, Ñuñoa.", "encomienda");
-        System.out.println("\n--- Encomienda de SpeedFast ---");
-        n2.asignarRepartidor();
+        Pedido n3 = new PedidoExpress(60, "Martinez de Rosas 2428, Quinta Normal.", 8, "Express");
 
-        Pedido n4 = new PedidoEncomienda(8, "Fresia Oliva 780, Lo Prado.", "Encomienda");
-        System.out.println("\n--- Encomienda de SpeedFast ---");
-        n4.asignarRepartidor();
-        n4.asignarRepartidor("Mirsa Castillo");
+        //impresión utilizando polimorfismo
+        Pedido[] pedidos = {n1, n2, n3};
 
-        Pedido n3 = new PedidoExpress(60, "Martinez de Rosas 2428, Quinta Normal.", "Express");
-        System.out.println("\n--- Pedido Express de SpeedFast ---");
-        n3.asignarRepartidor();
-        n3.asignarRepartidor("Yasmina Soriano");
+        for (Pedido p : pedidos){
+            p.calcularTiempoEntrega();
+            p.mostrarResumen();
+            p.asignarRepartidor();
+        }
+
+
     }
 }
