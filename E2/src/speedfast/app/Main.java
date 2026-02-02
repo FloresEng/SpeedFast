@@ -55,7 +55,7 @@ public class Main {
 
         try{
             //esperamos que todos entreguen sus pedidos antes de cerrar
-            if (executor.awaitTermination(5, TimeUnit.MINUTES));
+            if (executor.awaitTermination(5, TimeUnit.MINUTES))
             System.out.println("\nTodas las rutas han finalizado.");
         }catch (InterruptedException e){
             System.out.println("El sistema ha sido interrumpido.");
